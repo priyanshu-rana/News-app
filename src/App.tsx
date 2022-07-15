@@ -1,11 +1,11 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import NewsList from "./components/NewsList";
 
 function App() {
   return (
     <div>
-      <h1 className="bg-green-400 h-screen text-white">
-        Main branch --button.tsx added
-      </h1>
+      <NewsList></NewsList>
     </div>
   );
 }
