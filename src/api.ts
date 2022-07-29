@@ -12,9 +12,9 @@ export const getNewsHeadlines = async () => {
   return response.data.articles;
 };
 
-export const getNews = async (query: string) => {
+export const getNews = async (newsTitle: string) => {
   const response = await axios.get<NewsObj[]>(
-    `https://newsapi.org/v2/everything?q=${query}&apiKey=a0b0b341dad347878294dc87ce870c7c`
+    `https://newsapi.org/v2/everything?q=${newsTitle}&apiKey=a0b0b341dad347878294dc87ce870c7c`
   );
   return response.data;
 };
