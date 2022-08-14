@@ -6,7 +6,7 @@ import { newsHeadlinesSelector } from "../redux/selectors";
 import { State } from "../redux/store";
 import NewsRow from "./NewsRow";
 
-type HeadlinesListProps = { newsHeadlines: News[]; fetchHeadings: () => void };
+type HeadlinesListProps = { newsHeadlines: any; fetchHeadings: () => void };
 
 const HeadlinesList: FC<HeadlinesListProps> = ({
   newsHeadlines,

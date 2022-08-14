@@ -18,15 +18,16 @@ import {
 export const sagaMiddleware = createSagaMiddleware();
 
 export function* fetchNewsSaga(action: AnyAction): Generator<any, any, any> {
-  yield delay(300);
+  try {
+    yield delay(500);
 
-  // if (!action.payload) {
-  //   return;
-  // }
-  const query = action.payload;
-
-  const data = yield call(getNews, query);
-  yield put(newsFetchedAction(query, data));
+    const query = action.payload;
+    if (!query) {
+      return [];
+    }
+    const data = yield call(getNews, query);
+    yield put(newsFetchedAction(data));
+  } catch (e) {}
 }
 
 export function* fetchNewsHeadinesSaga(): Generator<any, any, any> {
