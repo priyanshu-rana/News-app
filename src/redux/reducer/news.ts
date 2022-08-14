@@ -16,11 +16,9 @@ export const newsReducer: Reducer<NewsState> = (
 ) => {
   switch (action.type) {
     case NEWS_FETCH:
-      return {
-        ...state,
-      };
+      return { ...state, query: action.paylod };
+
     case NEWS_FETCHED:
-      //   const news: News = action.payload;
       return { ...state, news: action.payload };
 
     default:

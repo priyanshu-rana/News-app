@@ -1,11 +1,13 @@
-import { createSelector } from "reselect";
 import { State } from "./store";
 
-export const newsSelector = (n: State) => n.news;
+export const newsSelector = (n: any) => {
+  if (n.news.news.news) {
+    return n.news.news.news;
+  } else {
+    return [];
+  }
+};
 
-export const newsHeadlinesSelector = (n: State) => n.headlines;
-
-// export const newsEntitiesSelector = createSelector(
-//   newsSelector,
-//   (newsState) => newsState.
-// );
+export const newsHeadlinesSelector = (n: State) => {
+  return n.headlines.headlines;
+};
