@@ -9,3 +9,9 @@ export const newsHeadlinesSelector = (n: State) => n.headlines;
 //   newsSelector,
 //   (newsState) => newsState.
 // );
+
+export const newsQuerySelector = (n: State) => n.news.query;
+// export const newsQuerySelector = createSelector(
+//   newsSelector,
+//   (newsQuery) => newsQuery.newsQuery
+// );

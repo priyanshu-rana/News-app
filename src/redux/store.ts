@@ -1,40 +1,15 @@
-import {
-  AnyAction,
-  applyMiddleware,
-  combineReducers,
-  createStore,
-} from "redux";
-import { News } from "../models/news";
-import { NEWS_FETCHED, NEWS_HEADLINES_FETCHED } from "./actions";
+import { applyMiddleware, combineReducers, createStore } from "redux";
+import { headlinesReducer } from "./reducer/headlines";
 import { newsReducer } from "./reducer/news";
 import { rootSaga, sagaMiddleware } from "./sagas";
 
-export type State = {
-  news: News[];
-  headlines: News[];
-};
-
-const initialState: State = {
-  news: [],
-  headlines: [],
-};
-
-export const reducer = (state = initialState, action: AnyAction) => {
-  switch (action.type) {
-    case NEWS_FETCHED:
-      return { ...state, news: action.payload };
-
-    case NEWS_HEADLINES_FETCHED:
-      return { ...state, headlines: action.payload };
-    default:
-      return state;
-  }
-};
-
-// export const reducer = combineReducers({
-//   news: newsReducer,
-// });
+export const reducer = combineReducers({
+  news: newsReducer,
+  headlines: headlinesReducer,
+});
 
 export const store = createStore(reducer, applyMiddleware(sagaMiddleware));
+
+export type State = ReturnType<typeof store.getState>;
 
 sagaMiddleware.run(rootSaga);

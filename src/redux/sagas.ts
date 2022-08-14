@@ -1,22 +1,32 @@
 import createSagaMiddleware from "@redux-saga/core";
-import { call, put, takeEvery } from "@redux-saga/core/effects";
+import {
+  call,
+  delay,
+  put,
+  takeEvery,
+  takeLatest,
+} from "@redux-saga/core/effects";
 import { AnyAction } from "redux";
 import { getNews, getNewsHeadlines } from "../api";
 import {
-  newsFetchedAction,
-  newsFetchAction,
   NEWS_FETCH,
-  NEWS_FETCHED,
-  NEWS_HEADLINES_FETCH,
+  HEADLINES_FETCH,
   newsHeadlinesFetchedAction,
+  newsFetchedAction,
 } from "./actions";
 
 export const sagaMiddleware = createSagaMiddleware();
 
 export function* fetchNewsSaga(action: AnyAction): Generator<any, any, any> {
-  const newsTitle: string = action.payload;
-  const data = yield call(getNews, newsTitle);
-  yield put(newsFetchedAction(data));
+  yield delay(300);
+
+  // if (!action.payload) {
+  //   return;
+  // }
+  const query = action.payload;
+
+  const data = yield call(getNews, query);
+  yield put(newsFetchedAction(query, data));
 }
 
 export function* fetchNewsHeadinesSaga(): Generator<any, any, any> {
@@ -25,6 +35,6 @@ export function* fetchNewsHeadinesSaga(): Generator<any, any, any> {
 }
 
 export function* rootSaga() {
-  // yield takeEvery(NEWS_FETCH, fetchNewsSaga);
-  yield takeEvery(NEWS_HEADLINES_FETCH, fetchNewsHeadinesSaga);
+  yield takeLatest(NEWS_FETCH, fetchNewsSaga);
+  yield takeEvery(HEADLINES_FETCH, fetchNewsHeadinesSaga);
 }

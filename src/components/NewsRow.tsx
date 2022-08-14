@@ -1,5 +1,5 @@
 import { FC, memo } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { News } from "../models/news";
 
 type NewsRowProps = {
