@@ -8,7 +8,7 @@ import HeadlinesList from "./HeadlinesList";
 import NewsRow from "./NewsRow";
 
 type NewsListProps = {
-  query: string;
+  query?: string;
   news: any;
   fetchNews: (query: string) => void;
 };
