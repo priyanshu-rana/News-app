@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, memo } from "react";
+import { ChangeEvent, FC, memo, useState } from "react";
 import { connect } from "react-redux";
 import { News } from "../models/news";
 import { newsFetchAction } from "../redux/actions";
@@ -13,14 +13,21 @@ type NewsListProps = {
 };
 
 const NewsList: FC<NewsListProps> = ({ news, query, fetchNews }) => {
+  const [showHeadLines, setShowHeadLines] = useState<boolean>(true);
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    fetchNews(event.target.value);
+    if (event.target.value) {
+      fetchNews(event.target.value);
+      setShowHeadLines(false);
+    } else {
+      setShowHeadLines(true);
+    }
   };
 
   return (
     <div>
       <div className="sm:flex  sm:justify-between sm:px-20 sm:py-4">
-        <h1 className="text-3xl  font-bold  font-serif"> Priyanshu's News</h1>
+        <h1 className="text-3xl  font-bold  font-serif">FAST NEWS</h1>
         <input
           onChange={handleChange}
           className="sm:px-2 sm:py-1 text-blue-500 border-2 rounded-md"
