@@ -23,7 +23,7 @@ export function* fetchNewsSaga(action: AnyAction): Generator<any, any, any> {
 
     const query = action.payload;
     if (!query) {
-      return [];
+      return;
     }
     const data = yield call(getNews, query);
     yield put(newsFetchedAction(data));

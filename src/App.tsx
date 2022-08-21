@@ -1,12 +1,10 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import ContactUs from "./components/ContactUs";
-import NewsList from "./components/NewsList";
+import HomePage from "./components/HomePage";
 
 function App() {
   return (
     <div>
-      <NewsList></NewsList>
+      <HomePage />
       <div className="flex items-center justify-center">
         {/* <ContactUs /> */}
       </div>

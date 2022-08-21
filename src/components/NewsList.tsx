@@ -4,11 +4,10 @@ import { News } from "../models/news";
 import { newsFetchAction } from "../redux/actions";
 import { newsSelector } from "../redux/selectors";
 import { State } from "../redux/store";
-import HeadlinesList from "./HeadlinesList";
 import NewsRow from "./NewsRow";
 
 type NewsListProps = {
-  query: string;
+  query?: string;
   news: any;
   fetchNews: (query: string) => void;
 };
@@ -28,14 +27,12 @@ const NewsList: FC<NewsListProps> = ({ news, query, fetchNews }) => {
           placeholder="Search News Here"
         />
       </div>
-
-      <div>
-        <h1 className="sm:text-3xl sm:px-32 sm:py-8">News :</h1>{" "}
+      <h1 className="sm:text-3xl sm:px-32 sm:py-8">News :</h1>{" "}
+      <div className="flex  justify-center flex-wrap">
         {news.map((n: News) => (
           <NewsRow news={n} key={n.title} />
         ))}
       </div>
-      {news.length || <HeadlinesList />}
     </div>
   );
 };
